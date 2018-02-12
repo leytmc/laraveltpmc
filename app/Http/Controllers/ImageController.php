@@ -52,6 +52,7 @@ class ImageController extends Controller
     {
         $request->validate([
             'image' => 'required|image|max:2000',
+            'titre' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|string|max:4096',

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 use App\Models\Article;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
 
@@ -16,6 +17,7 @@ class ImageRepository
         Storage::disk('thumbs')->put($path, $image->encode());
         // Save in base
         $image = new Article;
+        $image->titre = $request->titre;
         $image->description = $request->description;
         $image->category_id = $request->category_id;
         $image->name = $path;

@@ -12,9 +12,9 @@
             {{ csrf_field() }}
 
             @include('partials.form-group', [
-                'title' => __('Titre'),
+                'title' => __('Titre de l\'article'),
                 'type' => 'text',
-                'name' => 'title',
+                'name' => 'titre',
                 'required' => true,
                 ])
 
@@ -39,9 +39,10 @@
                 </select>
             </div>
 
+
             <div class="form-group">
                 <label for="description">Texte de l'article</label>
-                <textarea id="description" name="description" class="form-control"></textarea>
+                <textarea id="description" name="description" class="form-control"> </textarea>
             </div>
 
             @component('components.button')

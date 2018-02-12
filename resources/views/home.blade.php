@@ -1,23 +1,66 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="container-fluid">
 
-                    You are logged in!
+
+    @isset($category)
+        <h2 class="text-title mb-3">{{ $category->name }}</h2>
+    @endif</div>
+    @isset($user)
+            <h2 class="text-title mb-3">{{ __('Photos de ') . $user->name }}</h2>
+    @endif
+    <div class="card-columns">
+            @foreach($images as $image)
+                <div class="card">
+                    <a href="{{ url('images/' . $image->name) }}" class="image-link"><img class="card-img-top" src="{{ url('thumbs/' . $image->name) }}" alt="image"></a>
+                    <div class="card-body">
+                    @isset($image->titre)
+                            <p class="card-text">{{ $image->titre }}</p>
+                    @endisset
+                    @isset($image->description)
+                            <p class="card-text">{{ $image->description }}</p>
+                    @endisset
+                    </div>
+                    <div class="card-footer text-muted">
+                        <small><em>
+                                <a href="#" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
+                            </em></small>
+                        <small class="pull-right">
+                            <em>
+                                {{ $image->created_at }}
+                                @adminOrOwner($image->user_id)
+                                <a class="form-delete" href="{{ route('image.destroy', $image->id) }}" data-toggle="tooltip" title="@lang('Supprimer cette photo')"><i class="fa fa-trash"></i></a>
+                                <form action="{{ route('image.destroy', $image->id) }}" method="POST" class="hide">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                </form>
+                                @endadminOrOwner
+                            </em>
+                        </small>
+                    </div>
                 </div>
-            </div>
+            @endforeach
+            <div class="d-flex justify-content-center">
+            {{ $images->links() }}
         </div>
-    </div>
-</div>
+    </main>
+@endsection
+@section('script')
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+            $('.card-columns').magnificPopup({
+                delegate: 'a.image-link',
+                type: 'image',
+                gallery: { enabled: true }
+            });
+            $('a.form-delete').click(function(e) {
+                e.preventDefault();
+                let href = $(this).attr('href')
+                $("form[action='" + href + "'").submit()
+            })
+        })
+    </script>
 @endsection
