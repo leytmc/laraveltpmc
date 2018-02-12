@@ -41,8 +41,7 @@
 
             <div class="form-group">
                 <label for="description">Texte de l'article</label>
-                <textarea id="description" name="description" class="form-control">
-                </textarea>
+                <textarea id="description" name="description" class="form-control"></textarea>
             </div>
 
             @component('components.button')
