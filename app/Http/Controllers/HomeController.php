@@ -19,7 +19,9 @@ class HomeController extends Controller
     {
         $request->user()->authorizeRoles(['inconnu', 'connecte', 'moderateur', 'admin']);
         //return view('home');
-        $images = Article::paginate(8);
+        //$images = Article::paginate(8);
+        //$images = Article::latestWithUser()->paginate(config('app.pagination'));
+        $images = Article::paginate(config('app.pagination'));
         return view('home', compact('images'));        
     }
 
@@ -29,12 +31,5 @@ class HomeController extends Controller
         $request->user()->authorizeRoles(['inconnu']);
         return view('welcome');
     }
-
-    // public function index(Request $request)
-    // {   
-    //     $request->user()->authorizeRoles(['inconnu', 'connecte', 'moderateur', 'admin']);
-    //     $images = Article::paginate(8);
-    //     return view('home', compact('images'));
-    // }
 
 }

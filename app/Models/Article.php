@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Article extends Model
 {
     public function category(){
@@ -14,6 +15,9 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeLatestWithUser($query){
+        return $query->with('user')->latest();
+    }
 
     // fin ----------------------------
 }

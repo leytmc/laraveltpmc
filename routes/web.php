@@ -32,3 +32,5 @@ Route::middleware('auth')->group(function () {
         'only' => ['create', 'store', 'destroy']
     ]);
 });
+
+Route::name('category')->get('category/{slug}', 'ImageController@Category');

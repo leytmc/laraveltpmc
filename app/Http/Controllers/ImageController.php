@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ImageRepository;
+use App\Models\Category;
 
 class ImageController extends Controller
 {
@@ -105,4 +106,11 @@ class ImageController extends Controller
     {
         //
     }
+
+public function category($slug){
+    $category = Category::whereSlug($slug)->firstorFail();
+    $images = $this->repository->getImagesForCategory($slug);
+    return view('home', compact('category', 'images'));
+}
+
 }

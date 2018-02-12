@@ -25,5 +25,11 @@ class ImageRepository
         $image->save();
     }
 
+    public function getImagesForCategory($slug){
+        return Article::latestWithUser()->whereHas('category', function($query) use ($slug){
+            $query->whereSlug($slug);
+        })->paginate(config('app.pagination'));
+    }
+
 // fin -------------------------------    
 }
