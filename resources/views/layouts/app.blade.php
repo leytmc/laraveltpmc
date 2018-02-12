@@ -36,7 +36,11 @@
                     </a>
                 </div>
             </li>
-        @endadmin            </ul>
+        @endadmin
+        @auth
+            <li class="nav-item{{ currentRoute(route('image.create')) }}"><a class="nav-link" href="{{ route('image.create') }}">@lang('Ajouter un article')</a></li>
+        @endauth
+        </ul>
             <ul class="navbar-nav ml-auto">                
             @guest
                 <li class="nav-item{{ currentRoute(route('login')) }}"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>

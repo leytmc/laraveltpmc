@@ -8975,6 +8975,7 @@ a.text-dark:hover, a.text-dark:focus {
 /*# sourceMappingURL=bootstrap.css.map */
 body{padding-top:70px;}
 .row .col-md-8.col-md-offset-2{margin:auto;width:30%}
+.custom-file-label::after{content:"Parcourir";}
 body.swal2-shown {
     overflow-y: hidden; }
   

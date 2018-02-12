@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
-
 class Admin
 {
     /**
@@ -16,7 +13,6 @@ class Admin
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
         if ($user && $user->name === 'admin' || $user && $user->name === 'moderateur') {
             return $next($request);
         }
