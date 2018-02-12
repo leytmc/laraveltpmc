@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Events\CategorySaving;
 
 class Category extends Model
 {
@@ -13,5 +14,10 @@ class Category extends Model
     public function articles(){
         return $this->hasMany(Article::class);
     }
+
+    protected $dispatchesEvents = [
+        'saving' => CategorySaving::class,
+    ];
+
 // fin --------------------------------    
 }

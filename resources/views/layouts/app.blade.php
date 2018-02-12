@@ -47,6 +47,17 @@
         </ul>
     </div>
 </nav>
+@if(session('ok'))
+    <div class="container">
+        <div class="alert alert-dismissible alert-success fade show" role="alert">
+            {{ session('ok') }}
+            <button class="close" type="button" dat-dismiss="alert" aria-label="Close">
+                <span aria-hidden="ture">&times;</span>
+            </button>
+        </div>
+    </div>
+@endif
+
 @yield('content')
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('script')
