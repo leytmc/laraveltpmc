@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Category;
 
-class Admin
+class ViewsShare
 {
     /**
      * Handle an incoming request.
@@ -15,11 +16,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->user();
-
-        if ($user && $user->name === 'admin' || $user && $user->name === 'moderateur') {
-            return $next($request);
-        }
-        return redirect()->route('home');
+        view()->share('categories', Category::all());
+        return $next($request);
     }
 }

@@ -14,28 +14,28 @@ class UserTableSeeder extends Seeder
     $role_admin = Role::where('niveau', 'name', 'admin')->first();
 
     $inconnu = new User();
-    $inconnu->name = 'Inconnu';
+    $inconnu->name = 'inconnu';
     $inconnu->email = 'inconnu@example.fr';
     $inconnu->password = bcrypt('secret');
     $inconnu->save();
     $inconnu->roles()->attach($role_inconnu);
 
     $connecte = new User();
-    $connecte->name = 'Connecté';
+    $connecte->name = 'connecte';
     $connecte->email = 'connecte@example.fr';
     $connecte->password = bcrypt('secret');
     $connecte->save();
     $connecte->roles()->attach($role_connecte);
 
     $moderateur = new User();
-    $moderateur->name = 'Modérateur';
+    $moderateur->name = 'moderateur';
     $moderateur->email = 'moderateur@example.fr';
     $moderateur->password = bcrypt('secret');
     $moderateur->save();
     $moderateur->roles()->attach($role_moderateur);
 
     $admin = new User();
-    $admin->name = 'Admin';
+    $admin->name = 'admin';
     $admin->email = 'admin@example.fr';
     $admin->password = bcrypt('secret');
     $admin->save();

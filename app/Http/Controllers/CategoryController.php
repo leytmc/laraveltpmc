@@ -15,8 +15,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories.index' );
     }
+
+// old 
+    // public function index()
+    // {
+    //     $categories = Category::all();
+    //     return view('categories.index', compact('categories') );
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -35,6 +42,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
         Category::create($request->all());
@@ -58,9 +67,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -70,9 +79,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+        return redirect()->route('home')->with('ok', __('La catégorie a été modifiée'));
     }
 
     /**
@@ -81,9 +91,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json();
     }
 
 // fin --------------------------------------------

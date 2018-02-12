@@ -18,19 +18,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            @admin
+        @admin
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle{{ currentRoute( route('category.create') )}}" href="#" id="navbarDropdownGestCat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle{{ currentRoute(
+                        route('category.create'),
+                        route('category.index'),
+                        route('category.edit', request()->category)
+                    )}}" href="#" id="navbarDropdownGestCat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @lang('Administration')
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownGestCat">
                     <a class="dropdown-item" href="{{ route('category.create') }}">
-                        <i class="fa fa-plus fa-lg"></i> @lang('Ajouter une catégorie')
+                        <i class="fas fa-plus fa-lg"></i> @lang('Ajouter une catégorie')
+                    </a>
+                    <a class="dropdown-item" href="{{ route('category.index') }}">
+                        <i class="fas fa-wrench fa-lg"></i> @lang('Gérer les catégories')
                     </a>
                 </div>
             </li>
-            @endadmin    
-            </ul>
+        @endadmin            </ul>
             <ul class="navbar-nav ml-auto">                
             @guest
                 <li class="nav-item{{ currentRoute(route('login')) }}"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
@@ -47,16 +53,18 @@
         </ul>
     </div>
 </nav>
-@if(session('ok'))
+
+@if (session('ok'))
     <div class="container">
         <div class="alert alert-dismissible alert-success fade show" role="alert">
             {{ session('ok') }}
-            <button class="close" type="button" dat-dismiss="alert" aria-label="Close">
-                <span aria-hidden="ture">&times;</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
 @endif
+
 
 @yield('content')
 <script src="{{ asset('js/app.js') }}"></script>
