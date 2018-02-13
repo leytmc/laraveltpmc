@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ImageRepository;
-use App\Models\Category;
+use App\Models\ { Category, User, Article };
 
 class ImageController extends Controller
 {
@@ -102,9 +102,10 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $image)
     {
-        //
+        $image->delete();
+        return back()->with('ok', __("L'article a bien été supprimé"));
     }
 
 public function category($slug){
@@ -113,4 +114,10 @@ public function category($slug){
     return view('home', compact('category', 'images'));
 }
 
+public function user(User $user)
+{
+    $images = $this->repository->getImagesForUser($user->id);
+    return view('home', compact('user', 'images'));
+}
+// fin ------------------------
 }

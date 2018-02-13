@@ -25,8 +25,7 @@
                     </div>
                     <div class="card-footer text-muted">
                         <small><em>
-                                <a href="#" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
-                            </em></small>
+                        <a href="{{ route('user', $image->user->id) }}" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>                            </em></small>
                         <small class="pull-right">
                             <em>
                                 {{ $image->created_at }}
