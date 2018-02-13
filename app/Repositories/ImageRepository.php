@@ -37,5 +37,22 @@ class ImageRepository
             $query->whereId($id);
         })->paginate(config('app.pagination'));
     }
+
+
+    public function getOrphans()
+    {
+        $files = collect(Storage::disk('images')->files());
+        $images = Article::select('name')->get()->pluck('name');
+        return $files->diff($images);
+    }  
+    
+    public function destroyOrphans()
+    {
+        $orphans = $this->getOrphans ();
+        foreach($orphans as $orphan) {
+            Storage::disk('images')->delete($orphan);
+            Storage::disk('thumbs')->delete($orphan);
+        }
+    }    
 // fin -------------------------------    
 }

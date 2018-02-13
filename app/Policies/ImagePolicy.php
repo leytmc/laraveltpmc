@@ -17,7 +17,7 @@ class ImagePolicy
      */
     public function before(User $user)
     {
-        if ($user->name ==='admin') { // 'admin'
+        if ($user->name === 'admin') { // 'admin'
             return true;
         }
     }
@@ -33,4 +33,6 @@ class ImagePolicy
     {
         return $user->id === $image->user_id;
     }
+  
+// fin ----------------------
 }
