@@ -17,7 +17,7 @@ class ImagePolicy
      */
     public function before(User $user)
     {
-        if ($user->role === 'admin') {
+        if ($user->name ==='admin') { // 'admin'
             return true;
         }
     }
@@ -26,10 +26,10 @@ class ImagePolicy
      * Determine whether the user can delete the image.
      *
      * @param \App\Models\User $user
-     * @param \App\Models\Image $image
+     * @param \App\Models\Article $image
      * @return mixed
      */
-    public function delete(User $user, Image $image)
+    public function delete(User $user, Article $image)
     {
         return $user->id === $image->user_id;
     }

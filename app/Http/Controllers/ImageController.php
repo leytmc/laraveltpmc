@@ -104,6 +104,7 @@ class ImageController extends Controller
      */
     public function destroy(Article $image)
     {
+        $this->authorize('delete', $image);
         $image->delete();
         return back()->with('ok', __("L'article a bien été supprimé"));
     }
