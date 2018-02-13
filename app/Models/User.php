@@ -25,7 +25,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         Authorizable::can as authorizableCan;
         }
     protected $fillable = [
-        'name', 'email','role_id', 'password',
+        'name', 'email','role_id', 'password', 'settings',
     ];
 
     protected $hidden = [

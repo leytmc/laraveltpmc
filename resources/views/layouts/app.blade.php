@@ -64,6 +64,7 @@
                 <li class="nav-item{{ currentRoute(route('login')) }}"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
                 <li class="nav-item{{ currentRoute(route('register')) }}"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a></li>
             @else
+                <li class="nav-item{{ currentRoute(route('profile.edit', auth()->id())) }}"><a class="link mr-2" href="{{ route('profile.edit', auth()->id()) }}">@lang('Profil')</a></li>
                 <li class="nav-item">
                     <span class="mr-2">Bienvenue {{ Auth::user()->name }}</span>
                     <a id="logout" class="link" href="{{ route('logout') }}">@lang('Déconnexion')</a>

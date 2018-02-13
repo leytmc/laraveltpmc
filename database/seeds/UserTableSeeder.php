@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
-use App\Role;
+use App\Models\User;
+use App\Models\Role;
 
 class UserTableSeeder extends Seeder
 {
@@ -17,6 +17,7 @@ class UserTableSeeder extends Seeder
     $inconnu->name = 'inconnu';
     $inconnu->email = 'inconnu@example.fr';
     $inconnu->password = bcrypt('secret');
+    $inconnu->settings = '{"pagination" : 8}';
     $inconnu->save();
     $inconnu->roles()->attach($role_inconnu);
 
@@ -24,6 +25,7 @@ class UserTableSeeder extends Seeder
     $connecte->name = 'connecte';
     $connecte->email = 'connecte@example.fr';
     $connecte->password = bcrypt('secret');
+    $connecte->settings = '{"pagination" : 8}';
     $connecte->save();
     $connecte->roles()->attach($role_connecte);
 
@@ -31,6 +33,7 @@ class UserTableSeeder extends Seeder
     $moderateur->name = 'moderateur';
     $moderateur->email = 'moderateur@example.fr';
     $moderateur->password = bcrypt('secret');
+    $moderateur->settings = '{"pagination" : 8}';
     $moderateur->save();
     $moderateur->roles()->attach($role_moderateur);
 
@@ -38,6 +41,7 @@ class UserTableSeeder extends Seeder
     $admin->name = 'admin';
     $admin->email = 'admin@example.fr';
     $admin->password = bcrypt('secret');
+    $admin->settings = '{"pagination" : 8}';
     $admin->save();
     $admin->roles()->attach($role_admin);
   }
