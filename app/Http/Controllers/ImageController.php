@@ -91,9 +91,13 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $image)
     {
-        //
+        $this->authorize('manage', $image);
+        
+        $image->category_id = $request->category_id;
+        $image->save();
+        return redirect()->back()->with('updated', __('La catégorie a bien été changée !'));
     }
 
     /**
@@ -104,7 +108,7 @@ class ImageController extends Controller
      */
     public function destroy(Article $image)
     {
-        $this->authorize('delete', $image);
+        $this->authorize('manage', $image);
         $image->delete();
         return back()->with('ok', __("L'article a bien été supprimé"));
     }
