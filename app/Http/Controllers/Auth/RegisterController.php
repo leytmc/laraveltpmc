@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'settings' => $data->toHtml (),
+            'settings' => '{"pagination" : 8}',
 
         ]);
 

@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Pagination\AbstractPaginator;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ public function boot()
         return auth()->check() && (auth()->id() === $id || auth()->user()->role === 'admin');
     });
 
+
+
+    if(request()->server("SCRIPT_NAME") !== 'artisan') {
+        view ()->share('categories', Category::all());
+    }
     AbstractPaginator::defaultView("pagination::bootstrap-4");
 }
 

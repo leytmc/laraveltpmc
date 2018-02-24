@@ -43,3 +43,4 @@ Route::middleware('auth')->group(function () {
 Route::name('category')->get('category/{slug}', 'ImageController@Category');
 
 Route::name('user')->get('user/{user}', 'ImageController@user');
+Route::name('language')->get('language/{lang}', 'HomeController@language');
