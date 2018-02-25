@@ -10161,3 +10161,4 @@ body{padding-top:70px;}
 .row .col-md-8.col-md-offset-2{margin:auto;width:30%}
 .custom-file-label::after{content:"Parcourir";}
 nav.navbar{background:#FFF;border-bottom:#E8E8E8 2px solid}
+.dropdown-menu{min-width: 5rem;}

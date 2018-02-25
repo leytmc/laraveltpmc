@@ -17,12 +17,14 @@ class Locale
     {
 
         if(!session()->has('locale')){
-            session(['locale' => $request->getPreferredLanguage(config('app.locates'))]);
+            session(['locale' => $request->getPreferredLanguage(config('app.locales'))]);
         }
             app()->setlocale(session('locale'));
-            setlocale(LC_TIME, session('Locale'));
+            setlocale(LC_TIME, session('locale'));
             return $next($request);
+            
 
+            // Construction d'un tableau de conversion dans le middleware
             $locale = session('locale');
 
             $conversion =[
