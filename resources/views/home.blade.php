@@ -37,6 +37,10 @@
                                 @adminOrOwner($image->user_id)
                                     <a class="category-edit" id="{{$image->category_id}}" href="#" data-toggle="tooltip" title="@lang('Changer de catégorie')"><i class="fa fa-edit"></i></a>
                                     <a class="form-delete" href="{{ route('image.destroy', $image->id) }}" data-toggle="tooltip" title="@lang('Supprimer cette photo')"><i class="fa fa-trash"></i></a>
+                                    <form action="{{ route('image.destroy', [$image->id]) }}" method="POST" class="hide">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form>                                
                                 @endadminOrOwner
                             </em>
                         </small>

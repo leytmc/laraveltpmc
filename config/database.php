@@ -33,9 +33,11 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'sqlite_testing' => [
             'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            //'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            //'database' => sorage_path().'/testing.sqlite',
+            'database' => ':memory:',
             'prefix' => '',
         ],
 
@@ -50,7 +52,7 @@ return [
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
-            'strict' => true,
+            'strict' => false,
             'engine' => null,
         ],
 

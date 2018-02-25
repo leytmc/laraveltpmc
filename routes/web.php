@@ -17,9 +17,12 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::name('home')->get('/', 'HomeController@index');
+//Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/inconnu', 'HomeController@someInconnuStuff')->name('welcome');
+Route::name('user')->get('user/{user}', 'ImageController@user');
+
+Route::name('language')->get('language/{lang}', 'HomeController@language');
 
 Route::middleware('admin')->group(function () {
     Route::resource ('category', 'CategoryController', [
@@ -28,6 +31,10 @@ Route::middleware('admin')->group(function () {
     Route::name('maintenance.index')->get('maintenance', 'AdminController@index');
     Route::name('maintenance.destroy')->delete('maintenance', 'AdminController@destroy');
 });
+
+//Route::get('/inconnu', 'HomeController@someInconnuStuff')->name('welcome');
+
+Route::name('category')->get('category/{slug}', 'ImageController@Category');
 
 Route::middleware('auth')->group(function () {
     Route::resource('profile', 'UserController', [
@@ -39,8 +46,3 @@ Route::middleware('auth')->group(function () {
         'only' => ['create', 'store', 'destroy', 'update']
     ]);
 });
-
-Route::name('category')->get('category/{slug}', 'ImageController@Category');
-
-Route::name('user')->get('user/{user}', 'ImageController@user');
-Route::name('language')->get('language/{lang}', 'HomeController@language');
